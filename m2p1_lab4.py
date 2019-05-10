@@ -10,16 +10,24 @@ Professor   : Clodonil Honorio Trigo
 Módulo      : https://github.com/clodonil/Python-Fundamentals/tree/master/modulo2/parte1/Labs/code
 
 Data        : 10 de Maio de 2019
-Descrição   : 
+Descrição   : Apresenta as depesas totais de um(a) deputado(a) pela busca de seu ID
 '''
 
 # Importamos a biblioteca
 from  lib.scrapy_dadosAbertos import DadosAbertos
 
-# Instanciamos os objetos
+# Instanciamos os objetos, em seguida pedimos qual ID buscar
 listJson = DadosAbertos()
 deputado = listJson.deputados()
-despesas = listJson.deputado_despesas('73437')
+deputadoID = input('Digite um ID de deputado (ex. 204521) : ')
+despesas = listJson.deputado_despesas(deputadoID)
+
+# Precisamos mostrar de quem são as depesas
+for linha in deputado :
+	if str(linha['id']) == str(deputadoID) :
+		print("\nID {0}, deputado(a) {1} : ".format(deputadoID, linha['nome']))
+
+# Instaciamos as variáveis
 criterio1 = "MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR"
 criterio2 = "LOCOMOÇÃO, ALIMENTAÇÃO E  HOSPEDAGEM"
 criterio3 = "COMBUSTÍVEIS E LUBRIFICANTES."
@@ -34,31 +42,30 @@ gasto4 = 0
 gasto5 = 0
 gasto6 = 0
 gasto7 = 0
+contador = 0
+
+# Para cada descrição, atribuímos uma soma de valores
+for despesa in despesas :
+   if despesa['tipoDespesa'] == criterio1 :
+       gasto1 = gasto1 + despesa['valorDocumento']
+   elif despesa['tipoDespesa'] == criterio2 :
+       gasto2 = gasto2 + despesa['valorDocumento']
+   elif despesa['tipoDespesa'] == criterio3 :
+       gasto3 = gasto3 + despesa['valorDocumento']
+   elif despesa['tipoDespesa'] == criterio4 :
+       gasto4 = gasto4 + despesa['valorDocumento']
+   elif despesa['tipoDespesa'] == criterio5 :
+       gasto5 = gasto5 + despesa['valorDocumento']
+   elif despesa['tipoDespesa'] == criterio6 :
+       gasto6 = gasto6 + despesa['valorDocumento']
+   else :
+       gasto7 = gasto7 + despesa['valorDocumento']
+
+# Para facilitar a impressão, juntamos os dados
 listaDespesas = [criterio1, criterio2, criterio3, criterio4, criterio5, criterio6, criterio7]
 listaValores = [gasto1, gasto2, gasto3, gasto4, gasto5, gasto6, gasto7]
 
-for despesa in despesas :
-   if despesa['tipoDespesa'] == crietrio1 :
-       gasto1 = gasto1 + float(despesa['valorDocumento'])
-   elif :
-       if despesa['tipoDespesa'] == crietrio2 :
-           gasto2 = gasto2 + float(despesa['valorDocumento'])
-       elif :
-           if despesa['tipoDespesa'] == crietrio1 :
-               gasto3 = gasto3 + float(despesa['valorDocumento'])
-           elif :
-                if despesa['tipoDespesa'] == crietrio1 :
-                    gasto4 = gasto4 + float(despesa['valordDocumento'])
-                elif :
-                    if despesa['tipoDespesa'] == crietrio1 :
-                       gasto5 = gasto5 + float(despesa['valordDocumento'])
-                    elif :
-                        if despesa['tipoDespesa'] == crietrio1 :
-                           gasto6 = gasto6 + float(despesa['valordDocumento'])
-                        else :
-                           gasto7 = gasto7 + float(despesa['valordDocumento'])
-   
-#print("{2}, {0}/{1}, R$ {3}".format(despesa['mes'],despesa['ano'],despesa['tipoDespesa'],despesa['valorDocumento']))
-print("Total de gastos com {0} = R$ {1}")
-
-#print(despesas)
+# Como temos sete itens nas listas, vamos imprimir as sete descrições e seus totais
+while contador < 7 :
+	print("  Total de gastos com {0} = R$ {1:.2f}".format(listaDespesas[contador], listaValores[contador]))
+	contador = contador + 1
