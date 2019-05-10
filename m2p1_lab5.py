@@ -1,16 +1,26 @@
 '''
-classe: m2p1_lab5.py
-descricao: Lista os titulos em maiúsculo dos orgãos do Congresso.:
-autor: Clodonil Honorio Trigo
-email: clodonil@nisled.org
-data: 18 de setembro de 2018
+Centro Universitário Adventista de São Paulo
+Campus SP
+
+Turma       : CI73A2019
+Aluno       : Gilson Nunes dos Santos Junior
+RA          : 96992
+Matéria     : Desenvolvimento Web
+Professor   : Clodonil Honorio Trigo
+Módulo      : https://github.com/clodonil/Python-Fundamentals/tree/master/modulo2/parte1/Labs/code
+
+Data        : 08 de Maio de 2019
+Descrição   : Apresenta o ID e descrição dos dez primeiros títulos do congresso.
 '''
 
+# Importamos a biblioteca
 from  lib.scrapy_dadosAbertos import DadosAbertos
 
+# Instanciamos objetos
 listJson = DadosAbertos()
 
-for org in listJson.orgaos():
-    id   = org['id']
-    nome = org['nome']
-    print(id,nome.upper())
+for item in listJson.orgaos():
+    id = item['id']
+    nome = item['nome']
+    if int(id) <= 2009 :
+        print(id, nome.upper())
