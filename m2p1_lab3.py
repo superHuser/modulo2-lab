@@ -9,7 +9,7 @@ Matéria     : Desenvolvimento Web
 Professor   : Clodonil Honorio Trigo
 Módulo      : https://github.com/clodonil/Python-Fundamentals/tree/master/modulo2/parte1/Labs/code
 
-Data        : 08 de Maio de 2019
+Data        : 09 de Maio de 2019
 Descrição   : Apresenta o nome do canditado e seu partido, em ordem alfabética.
 '''
 

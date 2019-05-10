@@ -9,7 +9,7 @@ Matéria     : Desenvolvimento Web
 Professor   : Clodonil Honorio Trigo
 Módulo      : https://github.com/clodonil/Python-Fundamentals/tree/master/modulo2/parte1/Labs/code
 
-Data        : 08 de Maio de 2019
+Data        : 09 de Maio de 2019
 Descrição   : Programa com otimização de execução; exibe cada ID de deputado, seu nome e sigla do partido.
 '''
 
